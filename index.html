@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>StudyHub</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+
 *{
 margin:0;
 padding:0;
@@ -16,45 +17,332 @@ box-sizing:border-box;
 
 body{
 font-family:'Plus Jakarta Sans',sans-serif;
-background:
-radial-gradient(circle at top left,rgba(139,92,246,.25),transparent 30%),
-radial-gradient(circle at bottom right,rgba(6,182,212,.18),transparent 30%),
-#060816;
+background:#070B14;
 color:white;
-min-height:100vh;
-overflow-x:hidden;
+padding:40px;
 }
 
-.app{
-display:flex;
+.hero{
+padding:80px;
+border-radius:40px;
+
+background:
+linear-gradient(
+135deg,
+rgba(139,92,246,.25),
+rgba(6,182,212,.12)
+);
+
+margin-bottom:40px;
 }
 
-.sidebar{
-width:240px;
-height:calc(100vh - 30px);
-position:fixed;
-top:15px;
-left:15px;
-background:rgba(17,24,39,.75);
-backdrop-filter:blur(20px);
-border:1px solid rgba(255,255,255,.08);
+.hero h1{
+font-size:5rem;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:1.1rem;
+color:#94A3B8;
+max-width:600px;
+line-height:1.8;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:24px;
+margin-bottom:40px;
+}
+
+.card{
+background:#111827;
+padding:35px;
+border-radius:28px;
+}
+
+.card small{
+color:#94A3B8;
+display:block;
+margin-bottom:14px;
+}
+
+.card h2{
+font-size:3rem;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1.3fr .8fr;
+gap:30px;
+}
+
+.tasks,
+.timer{
+background:#111827;
+padding:35px;
 border-radius:32px;
-padding:28px 20px;
 }
 
-.logo{
-font-size:1.7rem;
-font-weight:800;
-margin-bottom:60px;
-background:linear-gradient(135deg,#8B5CF6,#06B6D4);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-}
+.task{
+background:#1F2937;
+padding:20px;
+border-radius:20px;
+margin-bottom:18px;
 
-.menu{
 display:flex;
-flex-direction:column;
-gap:12px;
+justify-content:space-between;
+align-items:center;
 }
 
+.btn{
+border:none;
+padding:14px 20px;
+border-radius:14px;
+
+background:
+linear-gradient(
+135deg,
+#8B5CF6,
+#06B6D4
+);
+
+color:white;
+
+font-weight:700;
+cursor:pointer;
+}
+
+.time{
+font-size:5rem;
+font-weight:800;
+text-align:center;
+margin:60px 0;
+}
+
+.notes{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:24px;
+margin-top:40px;
+}
+
+.note{
+background:#111827;
+padding:30px;
+border-radius:28px;
+}
+
+.note h3{
+margin-bottom:16px;
+}
+
+.note p{
+line-height:1.8;
+color:#94A3B8;
+}
+
+@media(max-width:900px){
+
+.grid{
+grid-template-columns:1fr;
+}
+
+.hero h1{
+font-size:3rem;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+<h1>StudyHub ✨</h1>
+
+<p>
+Your aesthetic productivity workspace for studying,
+focus sessions, notes and task management.
+</p>
+</div>
+
+<div class="stats">
+
+<div class="card">
+<small>Tasks Completed</small>
+<h2>12</h2>
+</div>
+
+<div class="card">
+<small>Focus Hours</small>
+<h2>8h</h2>
+</div>
+
+<div class="card">
+<small>Current Streak</small>
+<h2>14</h2>
+</div>
+
+<div class="card">
+<small>Notes Created</small>
+<h2>21</h2>
+</div>
+
+</div>
+
+<div class="grid">
+
+<div class="tasks">
+
+<div style="
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
+">
+
+<h2>Today's Tasks</h2>
+
+<button class="btn">
++ Add Task
+</button>
+
+</div>
+
+<div class="task">
+<span>Complete DBMS Assignment</span>
+<button class="btn">Done</button>
+</div>
+
+<div class="task">
+<span>Revise Calculus Notes</span>
+<button class="btn">Done</button>
+</div>
+
+<div class="task">
+<span>Prepare Hackathon PPT</span>
+<button class="btn">Done</button>
+</div>
+
+</div>
+
+<div class="timer">
+
+<h2 style="text-align:center;">
+Focus Timer
+</h2>
+
+<div class="time" id="timer">
+25:00
+</div>
+
+<div style="
+display:flex;
+justify-content:center;
+gap:14px;
+">
+
+<button class="btn" onclick="startTimer()">
+Start
+</button>
+
+<button class="btn" onclick="resetTimer()">
+Reset
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="notes">
+
+<div class="note">
+<h3>Hackathon Ideas</h3>
+
+<p>
+AI fake news detection platform with summarization and verification.
+</p>
+</div>
+
+<div class="note">
+<h3>UI Inspiration</h3>
+
+<p>
+Modern SaaS layouts with large spacing and soft gradients.
+</p>
+</div>
+
+<div class="note">
+<h3>OS Revision</h3>
+
+<p>
+Revise CPU scheduling and memory management algorithms tonight.
+</p>
+</div>
+
+</div>
+
+<script>
+
+let time = 1500;
+let running = false;
+let interval;
+
+function updateTimer(){
+
+const mins = Math.floor(time / 60);
+const secs = time % 60;
+
+document.getElementById('timer').innerHTML =
+`${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;
+
+}
+
+function startTimer(){
+
+if(running)return;
+
+running = true;
+
+interval = setInterval(()=>{
+
+time--;
+
+updateTimer();
+
+if(time <= 0){
+
+clearInterval(interval);
+
+running = false;
+
+alert('Focus Session Complete ✨');
+
+}
+
+},1000);
+
+}
+
+function resetTimer(){
+
+clearInterval(interval);
+
+running = false;
+
+time = 1500;
+
+updateTimer();
+
+}
+
+updateTimer();
+
+</script>
+
+</body>
 </html>
