@@ -1,317 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Productivity Hub</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="[fonts.googleapis.com](https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap)" rel="stylesheet">
-</head>
-<body>
-    <div class="app-container">
-        <!-- Sidebar Navigation -->
-        <nav class="sidebar">
-            <div class="logo">
-                <span class="logo-icon">📚</span>
-                <span class="logo-text">StudyHub</span>
-            </div>
-            <ul class="nav-menu">
-                <li class="nav-item active" data-section="dashboard">
-                    <span class="nav-icon">📊</span>
-                    <span>Dashboard</span>
-                </li>
-                <li class="nav-item" data-section="tasks">
-                    <span class="nav-icon">✅</span>
-                    <span>Tasks</span>
-                </li>
-                <li class="nav-item" data-section="pomodoro">
-                    <span class="nav-icon">⏱️</span>
-                    <span>Pomodoro</span>
-                </li>
-                <li class="nav-item" data-section="notes">
-                    <span class="nav-icon">📝</span>
-                    <span>Notes</span>
-                </li>
-                <li class="nav-item" data-section="calendar">
-                    <span class="nav-icon">📅</span>
-                    <span>Calendar</span>
-                </li>
-            </ul>
-            <div class="sidebar-footer">
-                <button class="theme-toggle" id="themeToggle">
-                    <span class="theme-icon">🌙</span>
-                    <span>Dark Mode</span>
-                </button>
-            </div>
-        </nav>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>StudyHub</title>
 
-        <!-- Main Content Area -->
-        <main class="main-content">
-            <!-- Dashboard Section -->
-            <section class="content-section active" id="dashboard">
-                <header class="section-header">
-                    <h1>Welcome Back! 👋</h1>
-                    <p class="date-display" id="currentDate"></p>
-                </header>
-                
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-icon">✅</div>
-                        <div class="stat-info">
-                            <span class="stat-value" id="tasksCompleted">0</span>
-                            <span class="stat-label">Tasks Completed</span>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">⏱️</div>
-                        <div class="stat-info">
-                            <span class="stat-value" id="focusTime">0h</span>
-                            <span class="stat-label">Focus Time Today</span>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">🔥</div>
-                        <div class="stat-info">
-                            <span class="stat-value" id="streak">0</span>
-                            <span class="stat-label">Day Streak</span>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">📝</div>
-                        <div class="stat-info">
-                            <span class="stat-value" id="notesCount">0</span>
-                            <span class="stat-label">Notes Created</span>
-                        </div>
-                    </div>
-                </div>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-                <div class="dashboard-grid">
-                    <div class="dashboard-card">
-                        <h3>Today's Tasks</h3>
-                        <ul class="quick-tasks" id="dashboardTasks">
-                            <li class="empty-state">No tasks for today</li>
-                        </ul>
-                    </div>
-                    <div class="dashboard-card">
-                        <h3>Quick Timer</h3>
-                        <div class="quick-timer">
-                            <div class="timer-display" id="quickTimer">25:00</div>
-                            <button class="btn btn-primary" id="quickStartBtn">Start Focus</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-            <!-- Tasks Section -->
-            <section class="content-section" id="tasks">
-                <header class="section-header">
-                    <h1>Tasks</h1>
-                    <button class="btn btn-primary" id="addTaskBtn">+ Add Task</button>
-                </header>
+body{
+font-family:'Plus Jakarta Sans',sans-serif;
+background:
+radial-gradient(circle at top left,rgba(139,92,246,.25),transparent 30%),
+radial-gradient(circle at bottom right,rgba(6,182,212,.18),transparent 30%),
+#060816;
+color:white;
+min-height:100vh;
+overflow-x:hidden;
+}
 
-                <div class="task-filters">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="pending">Pending</button>
-                    <button class="filter-btn" data-filter="completed">Completed</button>
-                </div>
+.app{
+display:flex;
+}
 
-                <div class="tasks-container">
-                    <ul class="task-list" id="taskList">
-                        <!-- Tasks will be added here -->
-                    </ul>
-                </div>
+.sidebar{
+width:240px;
+height:calc(100vh - 30px);
+position:fixed;
+top:15px;
+left:15px;
+background:rgba(17,24,39,.75);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,.08);
+border-radius:32px;
+padding:28px 20px;
+}
 
-                <!-- Add Task Modal -->
-                <div class="modal" id="taskModal">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h2>Add New Task</h2>
-                            <button class="close-btn" id="closeTaskModal">&times;</button>
-                        </div>
-                        <form id="taskForm">
-                            <div class="form-group">
-                                <label for="taskTitle">Task Title</label>
-                                <input type="text" id="taskTitle" required placeholder="Enter task title">
-                            </div>
-                            <div class="form-group">
-                                <label for="taskDescription">Description</label>
-                                <textarea id="taskDescription" placeholder="Enter description (optional)"></textarea>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="taskDueDate">Due Date</label>
-                                    <input type="date" id="taskDueDate">
-                                </div>
-                                <div class="form-group">
-                                    <label for="taskPriority">Priority</label>
-                                    <select id="taskPriority">
-                                        <option value="low">Low</option>
-                                        <option value="medium" selected>Medium</option>
-                                        <option value="high">High</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="taskCategory">Category</label>
-                                <select id="taskCategory">
-                                    <option value="homework">Homework</option>
-                                    <option value="project">Project</option>
-                                    <option value="exam">Exam Prep</option>
-                                    <option value="reading">Reading</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-full">Add Task</button>
-                        </form>
-                    </div>
-                </div>
-            </section>
+.logo{
+font-size:1.7rem;
+font-weight:800;
+margin-bottom:60px;
+background:linear-gradient(135deg,#8B5CF6,#06B6D4);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
 
-            <!-- Pomodoro Section -->
-            <section class="content-section" id="pomodoro">
-                <header class="section-header">
-                    <h1>Pomodoro Timer</h1>
-                </header>
+.menu{
+display:flex;
+flex-direction:column;
+gap:12px;
+}
 
-                <div class="pomodoro-container">
-                    <div class="timer-modes">
-                        <button class="mode-btn active" data-mode="focus">Focus</button>
-                        <button class="mode-btn" data-mode="short">Short Break</button>
-                        <button class="mode-btn" data-mode="long">Long Break</button>
-                    </div>
-
-                    <div class="timer-circle">
-                        <svg class="timer-svg" viewBox="0 0 200 200">
-                            <circle class="timer-bg" cx="100" cy="100" r="90"></circle>
-                            <circle class="timer-progress" cx="100" cy="100" r="90" id="timerProgress"></circle>
-                        </svg>
-                        <div class="timer-text">
-                            <span class="timer-display" id="pomodoroDisplay">25:00</span>
-                            <span class="timer-label" id="timerLabel">Focus Time</span>
-                        </div>
-                    </div>
-
-                    <div class="timer-controls">
-                        <button class="btn btn-secondary" id="resetTimer">Reset</button>
-                        <button class="btn btn-primary btn-large" id="startPauseTimer">Start</button>
-                        <button class="btn btn-secondary" id="skipTimer">Skip</button>
-                    </div>
-
-                    <div class="session-info">
-                        <span>Session: <strong id="sessionCount">1</strong>/4</span>
-                        <span>Total Focus: <strong id="totalFocus">0</strong> min</span>
-                    </div>
-
-                    <div class="pomodoro-settings">
-                        <h3>Timer Settings</h3>
-                        <div class="settings-grid">
-                            <div class="setting-item">
-                                <label>Focus Duration</label>
-                                <input type="number" id="focusDuration" value="25" min="1" max="60">
-                                <span>min</span>
-                            </div>
-                            <div class="setting-item">
-                                <label>Short Break</label>
-                                <input type="number" id="shortBreakDuration" value="5" min="1" max="30">
-                                <span>min</span>
-                            </div>
-                            <div class="setting-item">
-                                <label>Long Break</label>
-                                <input type="number" id="longBreakDuration" value="15" min="1" max="60">
-                                <span>min</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Notes Section -->
-            <section class="content-section" id="notes">
-                <header class="section-header">
-                    <h1>Notes</h1>
-                    <button class="btn btn-primary" id="addNoteBtn">+ New Note</button>
-                </header>
-
-                <div class="notes-search">
-                    <input type="text" id="noteSearch" placeholder="Search notes...">
-                </div>
-
-                <div class="notes-grid" id="notesGrid">
-                    <!-- Notes will be added here -->
-                </div>
-
-                <!-- Note Editor Modal -->
-                <div class="modal" id="noteModal">
-                    <div class="modal-content modal-large">
-                        <div class="modal-header">
-                            <input type="text" id="noteTitle" placeholder="Note Title" class="note-title-input">
-                            <button class="close-btn" id="closeNoteModal">&times;</button>
-                        </div>
-                        <div class="note-editor">
-                            <div class="editor-toolbar">
-                                <button type="button" class="toolbar-btn" data-command="bold"><strong>B</strong></button>
-                                <button type="button" class="toolbar-btn" data-command="italic"><em>I</em></button>
-                                <button type="button" class="toolbar-btn" data-command="underline"><u>U</u></button>
-                                <span class="toolbar-divider"></span>
-                                <button type="button" class="toolbar-btn" data-command="insertUnorderedList">• List</button>
-                                <button type="button" class="toolbar-btn" data-command="insertOrderedList">1. List</button>
-                            </div>
-                            <div class="editor-content" id="noteContent" contenteditable="true" placeholder="Start writing..."></div>
-                        </div>
-                        <div class="note-footer">
-                            <select id="noteColor">
-                                <option value="#ffffff">White</option>
-                                <option value="#fff3cd">Yellow</option>
-                                <option value="#d1ecf1">Blue</option>
-                                <option value="#d4edda">Green</option>
-                                <option value="#f8d7da">Red</option>
-                                <option value="#e2d5f1">Purple</option>
-                            </select>
-                            <button class="btn btn-primary" id="saveNote">Save Note</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Calendar Section -->
-            <section class="content-section" id="calendar">
-                <header class="section-header">
-                    <h1>Calendar</h1>
-                </header>
-
-                <div class="calendar-container">
-                    <div class="calendar-header">
-                        <button class="btn btn-icon" id="prevMonth">←</button>
-                        <h2 id="calendarMonth">May 2025</h2>
-                        <button class="btn btn-icon" id="nextMonth">→</button>
-                    </div>
-
-                    <div class="calendar-grid">
-                        <div class="calendar-weekdays">
-                            <span>Sun</span>
-                            <span>Mon</span>
-                            <span>Tue</span>
-                            <span>Wed</span>
-                            <span>Thu</span>
-                            <span>Fri</span>
-                            <span>Sat</span>
-                        </div>
-                        <div class="calendar-days" id="calendarDays">
-                            <!-- Days will be generated -->
-                        </div>
-                    </div>
-
-                    <div class="calendar-events">
-                        <h3>Upcoming Deadlines</h3>
-                        <ul class="event-list" id="eventList">
-                            <!-- Events will be added here -->
-                        </ul>
-                    </div>
-                </div>
-            </section>
-        </main>
-    </div>
-
-    <script src="script.js"></script>
-</body>
 </html>
