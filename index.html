@@ -29,112 +29,149 @@ color:white;
 
 min-height:100vh;
 
+overflow-x:hidden;
+}
+
+.container{
+display:flex;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+width:240px;
+
+height:100vh;
+
+position:fixed;
+
+background:rgba(17,24,39,.75);
+
+backdrop-filter:blur(20px);
+
+padding:30px 20px;
+
+border-right:1px solid rgba(255,255,255,.08);
+}
+
+.logo{
+font-size:2rem;
+
+font-weight:800;
+
+margin-bottom:50px;
+
+background:linear-gradient(135deg,#8B5CF6,#06B6D4);
+
+background-clip:text;
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.nav-btn{
+width:100%;
+
+padding:16px;
+
+margin-bottom:12px;
+
+border:none;
+
+border-radius:18px;
+
+background:transparent;
+
+color:#94A3B8;
+
+font-size:1rem;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:.3s;
+
+text-align:left;
+}
+
+.nav-btn:hover,
+.nav-btn.active{
+background:linear-gradient(135deg,#8B5CF6,#06B6D4);
+
+color:white;
+}
+
+/* MAIN */
+
+.main{
+margin-left:240px;
+
 padding:40px;
 
-overflow-x:hidden;
+width:100%;
+}
+
+.tab{
+display:none;
+}
+
+.tab.active{
+display:block;
 }
 
 /* HERO */
 
 .hero{
-padding:90px 70px;
+padding:80px 60px;
 
 border-radius:40px;
 
 background:
 linear-gradient(
 135deg,
-rgba(139,92,246,.22),
-rgba(6,182,212,.10)
+rgba(139,92,246,.25),
+rgba(6,182,212,.12)
 );
 
-border:1px solid rgba(255,255,255,.08);
-
-position:relative;
-
-overflow:hidden;
-
 margin-bottom:40px;
+
+border:1px solid rgba(255,255,255,.08);
 }
 
-.hero::before{
-content:'';
-
-position:absolute;
-
-width:400px;
-height:400px;
-
-background:rgba(139,92,246,.35);
-
-right:-120px;
-top:-120px;
-
-border-radius:50%;
-
-filter:blur(120px);
-}
-
-.tag{
-letter-spacing:3px;
-
-font-size:.8rem;
-
-font-weight:700;
-
-color:#C4B5FD;
+.hero h1{
+font-size:4.5rem;
 
 margin-bottom:20px;
 }
 
-.hero h1{
-font-size:5rem;
-
-line-height:1;
-
-margin-bottom:25px;
-
-max-width:700px;
-}
-
 .hero p{
+color:#94A3B8;
+
 font-size:1.1rem;
 
-line-height:2;
+line-height:1.8;
 
 max-width:600px;
-
-color:#94A3B8;
 }
 
-/* STATS */
+/* CARDS */
 
-.stats{
+.grid{
 display:grid;
 
 grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 
 gap:24px;
-
-margin-bottom:40px;
 }
 
 .card{
-background:rgba(17,24,39,.72);
-
-backdrop-filter:blur(20px);
-
-border:1px solid rgba(255,255,255,.08);
+background:rgba(17,24,39,.75);
 
 padding:35px;
 
-border-radius:30px;
+border-radius:28px;
 
-transition:.35s;
-}
-
-.card:hover{
-transform:translateY(-8px);
+border:1px solid rgba(255,255,255,.08);
 }
 
 .card small{
@@ -149,47 +186,43 @@ color:#94A3B8;
 font-size:3rem;
 }
 
-/* GRID */
-
-.grid{
-display:grid;
-
-grid-template-columns:1.3fr .8fr;
-
-gap:30px;
-}
-
 /* TASKS */
 
-.tasks{
-background:rgba(17,24,39,.72);
-
-backdrop-filter:blur(20px);
-
-padding:35px;
-
-border-radius:32px;
-
-border:1px solid rgba(255,255,255,.08);
-}
-
-.header{
-display:flex;
-
-justify-content:space-between;
-align-items:center;
+.section-title{
+font-size:2.5rem;
 
 margin-bottom:30px;
 }
 
-.header h2{
-font-size:1.5rem;
+.input-group{
+display:flex;
+
+gap:14px;
+
+margin-bottom:30px;
 }
 
-.btn{
+input,
+textarea{
+width:100%;
+
+padding:16px;
+
 border:none;
 
-padding:14px 22px;
+border-radius:18px;
+
+background:#111827;
+
+color:white;
+
+font-size:1rem;
+}
+
+button{
+border:none;
+
+padding:16px 22px;
 
 border-radius:16px;
 
@@ -209,48 +242,40 @@ cursor:pointer;
 transition:.3s;
 }
 
-.btn:hover{
+button:hover{
 transform:translateY(-4px);
 }
 
 .task{
-background:rgba(255,255,255,.04);
+background:rgba(17,24,39,.75);
 
-border:1px solid rgba(255,255,255,.05);
+padding:20px;
 
-padding:20px 22px;
-
-border-radius:22px;
+border-radius:20px;
 
 margin-bottom:18px;
 
 display:flex;
 justify-content:space-between;
 align-items:center;
-
-transition:.35s;
 }
 
-.task:hover{
-transform:translateX(8px);
-
-background:rgba(255,255,255,.06);
+.delete-btn{
+background:#EF4444;
 }
 
 /* TIMER */
 
-.timer{
-background:rgba(17,24,39,.72);
+.timer-box{
+background:rgba(17,24,39,.75);
 
-backdrop-filter:blur(20px);
-
-padding:35px;
+padding:50px;
 
 border-radius:32px;
 
-border:1px solid rgba(255,255,255,.08);
-
 text-align:center;
+
+max-width:500px;
 }
 
 .time{
@@ -258,65 +283,42 @@ font-size:5rem;
 
 font-weight:800;
 
-margin:60px 0;
-
-background:
-linear-gradient(
-to right,
-#8B5CF6,
-#06B6D4
-);
-
-background-clip:text;
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-}
-
-.timer-buttons{
-display:flex;
-
-justify-content:center;
-
-gap:12px;
+margin:40px 0;
 }
 
 /* NOTES */
 
-.notes{
-display:grid;
+.note{
+background:rgba(17,24,39,.75);
 
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+padding:25px;
 
-gap:24px;
+border-radius:22px;
 
-margin-top:40px;
+margin-bottom:20px;
 }
 
-.note{
-background:rgba(17,24,39,.72);
+/* QUOTES */
 
-backdrop-filter:blur(20px);
+.quote-box{
+background:rgba(17,24,39,.75);
 
-padding:30px;
+padding:40px;
 
 border-radius:28px;
 
-border:1px solid rgba(255,255,255,.08);
-
-transition:.35s;
+max-width:700px;
 }
 
-.note:hover{
-transform:translateY(-8px);
+.quote{
+font-size:1.4rem;
+
+line-height:1.8;
+
+margin-bottom:20px;
 }
 
-.note h3{
-margin-bottom:16px;
-}
-
-.note p{
-line-height:1.9;
-
+.author{
 color:#94A3B8;
 }
 
@@ -324,8 +326,13 @@ color:#94A3B8;
 
 @media(max-width:900px){
 
-.grid{
-grid-template-columns:1fr;
+.sidebar{
+display:none;
+}
+
+.main{
+margin-left:0;
+padding:20px;
 }
 
 .hero h1{
@@ -339,33 +346,74 @@ font-size:3rem;
 
 <body>
 
-<div class="hero">
+<div class="container">
 
-<div class="tag">
-STUDENT PRODUCTIVITY HUB
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<div class="logo">
+StudyHub ✨
 </div>
+
+<button class="nav-btn active" onclick="showTab('dashboard',this)">
+🏠 Dashboard
+</button>
+
+<button class="nav-btn" onclick="showTab('tasks',this)">
+✅ Tasks
+</button>
+
+<button class="nav-btn" onclick="showTab('pomodoro',this)">
+⏳ Pomodoro
+</button>
+
+<button class="nav-btn" onclick="showTab('notes',this)">
+📝 Notes
+</button>
+
+<button class="nav-btn" onclick="showTab('quotes',this)">
+💡 Motivation
+</button>
+
+</div>
+
+<!-- MAIN -->
+
+<div class="main">
+
+<!-- DASHBOARD -->
+
+<div class="tab active" id="dashboard">
+
+<div class="hero">
 
 <h1>
 Study Better. Focus Better. ✨
 </h1>
 
 <p>
-An aesthetic workspace for productivity, focus sessions,
-task management and organized study routines.
+Your aesthetic productivity workspace with tasks,
+notes, pomodoro timer and motivational quotes.
 </p>
 
 </div>
 
-<div class="stats">
+<div class="grid">
 
 <div class="card">
-<small>Tasks Completed</small>
-<h2>12</h2>
+<small>Tasks</small>
+<h2 id="taskCount">0</h2>
 </div>
 
 <div class="card">
-<small>Focus Hours</small>
-<h2>8h</h2>
+<small>Notes</small>
+<h2 id="noteCount">0</h2>
+</div>
+
+<div class="card">
+<small>Focus Sessions</small>
+<h2>12</h2>
 </div>
 
 <div class="card">
@@ -373,66 +421,51 @@ task management and organized study routines.
 <h2>14</h2>
 </div>
 
-<div class="card">
-<small>Notes Created</small>
-<h2>21</h2>
 </div>
 
 </div>
 
-<div class="grid">
+<!-- TASKS -->
 
-<div class="tasks">
+<div class="tab" id="tasks">
 
-<div class="header">
+<h1 class="section-title">
+Task Manager
+</h1>
 
-<h2>Today's Tasks</h2>
+<div class="input-group">
 
-<button class="btn">
-+ Add Task
+<input type="text" id="taskInput" placeholder="Enter a task">
+
+<button onclick="addTask()">
+Add Task
 </button>
 
 </div>
 
-<div class="task">
-<span>Complete DBMS Assignment</span>
-<button class="btn">Done</button>
-</div>
-
-<div class="task">
-<span>Revise Calculus Notes</span>
-<button class="btn">Done</button>
-</div>
-
-<div class="task">
-<span>Prepare Hackathon PPT</span>
-<button class="btn">Done</button>
-</div>
-
-<div class="task">
-<span>Finish UI Redesign</span>
-<button class="btn">Done</button>
-</div>
+<div id="taskList"></div>
 
 </div>
 
-<div class="timer">
+<!-- POMODORO -->
 
-<h2>
-Focus Timer
-</h2>
+<div class="tab" id="pomodoro">
+
+<h1 class="section-title">
+Pomodoro Timer
+</h1>
+
+<div class="timer-box">
 
 <div class="time" id="timer">
 25:00
 </div>
 
-<div class="timer-buttons">
-
-<button class="btn" onclick="startTimer()">
+<button onclick="startTimer()">
 Start
 </button>
 
-<button class="btn" onclick="resetTimer()">
+<button onclick="resetTimer()">
 Reset
 </button>
 
@@ -440,55 +473,198 @@ Reset
 
 </div>
 
+<!-- NOTES -->
+
+<div class="tab" id="notes">
+
+<h1 class="section-title">
+Notes
+</h1>
+
+<div class="input-group">
+
+<textarea id="noteInput" placeholder="Write a note"></textarea>
+
+<button onclick="addNote()">
+Save Note
+</button>
+
 </div>
 
-<div class="notes">
+<div id="notesList"></div>
 
-<div class="note">
-<h3>AI Hackathon Ideas</h3>
-
-<p>
-Build a fake news detection platform with AI summarization and source verification.
-</p>
 </div>
 
-<div class="note">
-<h3>Operating Systems</h3>
+<!-- QUOTES -->
 
-<p>
-Revise CPU scheduling algorithms and memory management concepts tonight.
-</p>
+<div class="tab" id="quotes">
+
+<h1 class="section-title">
+Motivation Quotes
+</h1>
+
+<div class="quote-box">
+
+<div class="quote" id="quote">
+Click below to load a motivational quote ✨
 </div>
 
-<div class="note">
-<h3>UI Inspiration</h3>
+<div class="author" id="author">
+—
+</div>
 
-<p>
-Modern SaaS UI with glassmorphism, spacing, and premium gradients.
-</p>
+<br>
+
+<button onclick="getQuote()">
+Get Quote
+</button>
+
+</div>
+
+</div>
+
 </div>
 
 </div>
 
 <script>
 
+/* TABS */
+
+function showTab(id,btn){
+
+document.querySelectorAll('.tab').forEach(tab=>{
+tab.classList.remove('active');
+});
+
+document.getElementById(id).classList.add('active');
+
+document.querySelectorAll('.nav-btn').forEach(button=>{
+button.classList.remove('active');
+});
+
+btn.classList.add('active');
+
+}
+
+/* TASKS */
+
+let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+function renderTasks(){
+
+const taskList = document.getElementById('taskList');
+
+taskList.innerHTML = '';
+
+tasks.forEach((task,index)=>{
+
+taskList.innerHTML += `
+<div class="task">
+<span>${task}</span>
+
+<button class="delete-btn" onclick="deleteTask(${index})">
+Delete
+</button>
+</div>
+`;
+
+});
+
+localStorage.setItem('tasks',JSON.stringify(tasks));
+
+document.getElementById('taskCount').innerText = tasks.length;
+
+}
+
+function addTask(){
+
+const input = document.getElementById('taskInput');
+
+if(input.value.trim() === '') return;
+
+tasks.push(input.value);
+
+input.value = '';
+
+renderTasks();
+
+}
+
+function deleteTask(index){
+
+tasks.splice(index,1);
+
+renderTasks();
+
+}
+
+renderTasks();
+
+/* NOTES */
+
+let notes = JSON.parse(localStorage.getItem('notes')) || [];
+
+function renderNotes(){
+
+const notesList = document.getElementById('notesList');
+
+notesList.innerHTML = '';
+
+notes.forEach(note=>{
+
+notesList.innerHTML += `
+<div class="note">
+${note}
+</div>
+`;
+
+});
+
+localStorage.setItem('notes',JSON.stringify(notes));
+
+document.getElementById('noteCount').innerText = notes.length;
+
+}
+
+function addNote(){
+
+const noteInput = document.getElementById('noteInput');
+
+if(noteInput.value.trim() === '') return;
+
+notes.push(noteInput.value);
+
+noteInput.value = '';
+
+renderNotes();
+
+}
+
+renderNotes();
+
+/* TIMER */
+
 let time = 1500;
+
 let running = false;
+
 let interval;
 
 function updateTimer(){
 
 const mins = Math.floor(time / 60);
+
 const secs = time % 60;
 
-document.getElementById('timer').innerHTML =
+document.getElementById('timer').innerText =
 `${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;
 
 }
 
 function startTimer(){
 
-if(running)return;
+if(running) return;
 
 running = true;
 
@@ -525,6 +701,33 @@ updateTimer();
 }
 
 updateTimer();
+
+/* FETCH API + ASYNC AWAIT */
+
+async function getQuote(){
+
+try{
+
+const response = await fetch('https://api.quotable.io/random');
+
+const data = await response.json();
+
+document.getElementById('quote').innerText =
+`"${data.content}"`;
+
+document.getElementById('author').innerText =
+`— ${data.author}`;
+
+}
+
+catch(error){
+
+document.getElementById('quote').innerText =
+'Failed to load quote';
+
+}
+
+}
 
 </script>
 
